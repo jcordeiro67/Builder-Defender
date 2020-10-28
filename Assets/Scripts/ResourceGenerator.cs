@@ -5,21 +5,29 @@ using UnityEngine;
 public class ResourceGenerator : MonoBehaviour {
 
 	private BuildingTypeSO buildingType;
-	private float timer;
-	private float timerMax;
+	private Dictionary<ResourceGeneratorData, float> timerDict;
+	private Dictionary<ResourceGeneratorData, float> timerMaxDict;
 
 	private void Awake ()
 	{
 		buildingType = GetComponent<BuildingTypeHolder> ().buildingType;
-		timerMax = buildingType.resourceGeneratorData.timerMax;
+		timerDict = new Dictionary<ResourceGeneratorData, float> ();
+		timerMaxDict = new Dictionary<ResourceGeneratorData, float> ();
+
+		foreach (ResourceGeneratorData resourceGeneratorData in buildingType.resourceGeneratorData) {
+			timerDict [resourceGeneratorData] = 0f;
+			timerMaxDict [resourceGeneratorData] = resourceGeneratorData.timerMax;
+		}
 	}
 
 	private void Update ()
 	{
-		timer -= Time.deltaTime;
-		if (timer <= 0f) {
-			timer += timerMax;
-			ResourceManager.Instance.AddResource (buildingType.resourceGeneratorData.resourceType, 1);
+		foreach (ResourceGeneratorData resourceGeneratorData in buildingType.resourceGeneratorData) {
+			timerDict [resourceGeneratorData] -= Time.deltaTime;
+			if (timerDict [resourceGeneratorData] <= 0f) {
+				timerDict [resourceGeneratorData] += timerMaxDict [resourceGeneratorData];
+				ResourceManager.Instance.AddResource (resourceGeneratorData.resourceType, 1);
+			}
 		}
 	}
 
