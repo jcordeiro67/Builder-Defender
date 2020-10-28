@@ -6,5 +6,6 @@ using UnityEngine;
 
 public class ResourceTypeSO : ScriptableObject {
 	public string nameString;
+	public Sprite sprite;
 	//public Transform prefab;
 }
