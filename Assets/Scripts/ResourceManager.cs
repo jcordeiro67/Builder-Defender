@@ -33,19 +33,6 @@ public class ResourceManager : MonoBehaviour {
 
 	}
 
-	private void Update ()
-	{
-
-	}
-
-	//private void TestResourceAmountDictionary ()
-	//{
-	//	//Displays the resource amount for each resourceType
-	//	foreach (ResourceTypeSO resourceType in resourceAmountDictionary.Keys) {
-	//		Debug.Log (resourceType.nameString + "; " + resourceAmountDictionary [resourceType]);
-	//	}
-	//}
-
 	public void AddResource (ResourceTypeSO resourceType, int amount)
 	{
 		//Add resources to the resource amount by resource type

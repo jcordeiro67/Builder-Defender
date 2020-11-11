@@ -21,7 +21,7 @@ public class ResourcesUI : MonoBehaviour {
 			Transform resourceTransform = Instantiate (resourceTemplate, transform);
 			resourceTransform.gameObject.SetActive (true);
 
-			float offsetAmount = -150f;
+			float offsetAmount = -180f;
 
 			resourceTransform.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (offsetAmount * index, 0);
 			resourceTransform.Find ("image").GetComponent<Image> ().sprite = resourceType.sprite;
