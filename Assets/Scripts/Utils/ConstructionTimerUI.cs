@@ -15,6 +15,6 @@ public class ConstructionTimerUI : MonoBehaviour {
 
 	void Update ()
 	{
-		constructionProgressImage.fillAmount = buildingConstruction.GetConstructionTimerNormalized () * -1;
+		constructionProgressImage.fillAmount = buildingConstruction.GetConstructionTimerNormalized ();
 	}
 }
