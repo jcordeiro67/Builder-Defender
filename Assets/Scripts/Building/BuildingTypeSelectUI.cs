@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,15 @@ public class BuildingTypeSelectUI : MonoBehaviour {
 			BuildingManager.Instance.SetActiveBuildingType (null);
 		});
 
+		MouseEnterExitEvents mouseEnterExitEvents = cursorBtn.GetComponent<MouseEnterExitEvents> ();
+		mouseEnterExitEvents.OnMouseEnter += (object sender, EventArgs e) => {
+			TooltipUI.Instance.Show ("Arrow");
+		};
+
+		mouseEnterExitEvents.OnMouseExit += (object sender, EventArgs e) => {
+			TooltipUI.Instance.Hide ();
+		};
+
 		index++;
 
 		//Create a button for each buildingTypeSO
@@ -46,7 +56,7 @@ public class BuildingTypeSelectUI : MonoBehaviour {
 			Transform btnTransform = Instantiate (btnTemplate, transform);
 			btnTransform.gameObject.SetActive (true);
 
-			//Move button
+			//Building Type Buttons
 			offsetAmount = +140f;
 			btnTransform.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (offsetAmount * index, 0);
 			btnTransform.Find ("image").GetComponent<Image> ().sprite = buildingType.sprite;
@@ -55,6 +65,16 @@ public class BuildingTypeSelectUI : MonoBehaviour {
 			btnTransform.GetComponent<Button> ().onClick.AddListener (() => {
 				BuildingManager.Instance.SetActiveBuildingType (buildingType);
 			});
+
+			mouseEnterExitEvents = btnTransform.GetComponent<MouseEnterExitEvents> ();
+			mouseEnterExitEvents.OnMouseEnter += (object sender, EventArgs e) => {
+				//Show the tooltip and set the building name and required resources for construction
+				TooltipUI.Instance.Show (buildingType.nameString + "\n" + buildingType.GetConstructionResourceCostString ());
+			};
+
+			mouseEnterExitEvents.OnMouseExit += (object sender, EventArgs e) => {
+				TooltipUI.Instance.Hide ();
+			};
 
 			btnTransformDictionary [buildingType] = btnTransform;
 
@@ -75,13 +95,14 @@ public class BuildingTypeSelectUI : MonoBehaviour {
 
 	private void UpdateActiveBuildingTypeButton ()
 	{
+		//Updates the active building type button with the selected gameobject(outline) on the active button
 		cursorBtn.Find ("selected").gameObject.SetActive (false);
 		//Adds a active indicator to selected buildingType
 		foreach (BuildingTypeSO buildingType in btnTransformDictionary.Keys) {
 			Transform btntransform = btnTransformDictionary [buildingType];
 			btntransform.Find ("selected").gameObject.SetActive (false);
 		}
-
+		//enable the indicator on the active button
 		BuildingTypeSO activeBuildingType = BuildingManager.Instance.GetActiveBuildingType ();
 		if (activeBuildingType == null) {
 			cursorBtn.Find ("selected").gameObject.SetActive (true);

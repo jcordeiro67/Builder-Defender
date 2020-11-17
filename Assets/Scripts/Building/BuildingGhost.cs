@@ -25,7 +25,15 @@ public class BuildingGhost : MonoBehaviour {
 			resourceNearbyOverlay.Hide ();
 		} else {
 			Show (e.activeBuildingType.sprite);
-			resourceNearbyOverlay.Show (e.activeBuildingType.resourceGeneratorData);
+
+			//Check if building has resourceData and display resourceOverlay on ghost
+			if (e.activeBuildingType.hasResourceData) {
+				//does have resourceData
+				resourceNearbyOverlay.Show (e.activeBuildingType.resourceGeneratorData);
+			} else {
+				//does not contain resourceData
+				resourceNearbyOverlay.Hide ();
+			}
 		}
 	}
 

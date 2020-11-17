@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Destructable
+  - Enemy
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Top
     uniqueID: 4041271313
+    locked: 0
+  - name: Enemies
+    uniqueID: 1779960745
     locked: 0

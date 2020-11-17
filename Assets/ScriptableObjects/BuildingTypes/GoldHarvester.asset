@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14e6df1718cc4d2f9d306498335633d, type: 3}
   m_Name: GoldHarvester
   m_EditorClassIdentifier: 
-  nameString: Goldr Harvester
+  nameString: Gold Harvester
   prefab: {fileID: 8129730218334540247, guid: e4542bc3d85b24332b9ae87410f20f14, type: 3}
+  hasResourceData: 1
   resourceGeneratorData:
     timerMax: 2
     resourceType: {fileID: 11400000, guid: 8cf63760d43384f0e8cecc0a48feb382, type: 2}
     resourceDetectionRadius: 8
     maxResourceAmount: 4
   sprite: {fileID: 21300000, guid: 8ead931dd91bff8489e75de9c414f17f, type: 3}
-  minConstructionRadius: 7
+  minConstructionRadius: 5
+  constructionResourceCostArray:
+  - resourceType: {fileID: 11400000, guid: 7e1bedeead145459ea15ce4ee83467fc, type: 2}
+    amount: 50
+  - resourceType: {fileID: 11400000, guid: c127d01305e054090ba8643b9f20df62, type: 2}
+    amount: 50
+  healthAmountMax: 100
+  constructionTimerMax: 8
+  shootTimerMax: 0
+  targetMaxRadius: 0
