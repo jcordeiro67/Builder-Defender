@@ -18,6 +18,7 @@ public class BuildingTypeSO : ScriptableObject {
 	public float constructionTimerMax;
 	public float shootTimerMax;
 	public float targetMaxRadius;
+	public float demolishResourceReturnRate;
 
 	public string GetConstructionResourceCostString ()
 	{

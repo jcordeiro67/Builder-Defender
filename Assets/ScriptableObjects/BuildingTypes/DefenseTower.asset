@@ -31,3 +31,4 @@ MonoBehaviour:
   constructionTimerMax: 6
   shootTimerMax: 0.3
   targetMaxRadius: 40
+  demolishResourceReturnRate: 0.5

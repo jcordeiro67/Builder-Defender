@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8092f31041f234bd9a4d8e23d1275e0b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 4512641483564134149}
   - component: {fileID: 6098504985083325262}
   - component: {fileID: 4518589159018246194}
+  - component: {fileID: 5129921682643053330}
   m_Layer: 0
   m_Name: PFBuildingConstruction
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3cd8e02a6494371a272b9363c9d5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5129921682643053330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4164687215932853534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf77277756e9454bb7d8d3fcfca04ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: {fileID: 0}
 --- !u!1001 &3919646077421107272
 PrefabInstance:
   m_ObjectHideFlags: 0
