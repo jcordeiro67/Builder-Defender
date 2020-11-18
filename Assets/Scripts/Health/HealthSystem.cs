@@ -6,13 +6,16 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour {
 
 	public event EventHandler OnDamage;
+	public event EventHandler OnHealed;
 	public event EventHandler OnDie;
 
 	[SerializeField] private int healthAmountMax;
 	private int healthAmount;
+	//private BuildingTypeSO buildingType;
 
 	private void Awake ()
 	{
+		//buildingType = gameObject.GetComponent<BuildingTypeHolder> ().buildingType;
 		healthAmount = healthAmountMax;
 	}
 
@@ -55,5 +58,18 @@ public class HealthSystem : MonoBehaviour {
 	public bool IsFullHealth ()
 	{
 		return healthAmount == healthAmountMax;
+	}
+
+	public void Heal (int healAmount)
+	{
+		healthAmount += healAmount;
+		healthAmount = Mathf.Clamp (healthAmount, 0, healthAmountMax);
+		OnHealed?.Invoke (this, EventArgs.Empty);
+	}
+
+	public void HealFull ()
+	{
+		healthAmount = healthAmountMax;
+		OnHealed?.Invoke (this, EventArgs.Empty);
 	}
 }

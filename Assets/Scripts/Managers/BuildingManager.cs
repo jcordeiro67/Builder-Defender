@@ -29,12 +29,13 @@ public class BuildingManager : MonoBehaviour {
 	}
 	private void Start ()
 	{
-		hqBuilding.GetComponent<HealthSystem> ().OnDie += BuildingManager_OnDie;
+		hqBuilding.GetComponent<HealthSystem> ().OnDie += HQ_OnDie;
 	}
 
-	private void BuildingManager_OnDie (object sender, EventArgs e)
+	private void HQ_OnDie (object sender, EventArgs e)
 	{
 		//GameOver
+		GameOverUI.Instance.Show ();
 	}
 
 	private void Update ()

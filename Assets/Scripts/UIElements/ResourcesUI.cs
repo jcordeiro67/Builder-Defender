@@ -14,6 +14,7 @@ public class ResourcesUI : MonoBehaviour {
 	{
 		resourceTypeList = Resources.Load<ResourceTypeListSO> (typeof (ResourceTypeListSO).Name);
 		resourceTypeTransformDictionary = new Dictionary<ResourceTypeSO, Transform> ();
+		//Turn off resource template
 		resourceTemplate.gameObject.SetActive (false);
 
 		int index = 0;

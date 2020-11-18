@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class EnemyWaveManager : MonoBehaviour {
 
-
+	public static EnemyWaveManager Instance { get; private set; }
 	public event EventHandler OnWaveNumberChanged;
 
 	private enum State {
@@ -25,13 +25,19 @@ public class EnemyWaveManager : MonoBehaviour {
 	private float nextEnemySpawnTimer;
 	private int remainingEnemySpawnAmount;
 	private Vector3 spawnPosition;
+	private int totalEnemiesThisWave;
+
+	private void Awake ()
+	{
+		Instance = this;
+	}
 
 	private void Start ()
 	{
 		state = State.WaitingToSpawnNextWave;
 		spawnPosition = spawnPositionTransformList [UnityEngine.Random.Range (0, spawnPositionTransformList.Length)].position;
 		NextWaveSpawnPositionTransform.position = spawnPosition;
-		nextWaveSpawnTimer = 3f;
+		nextWaveSpawnTimer = 5f;
 	}
 
 	private void Update ()
@@ -70,6 +76,7 @@ public class EnemyWaveManager : MonoBehaviour {
 		//Increase wave difficulty
 		remainingEnemySpawnAmount = enemySpawnAmountPerWave + enemyIncreasePerWave * waveNumber;
 		state = State.SpawningWave;
+		totalEnemiesThisWave = remainingEnemySpawnAmount;
 		waveNumber++;
 		OnWaveNumberChanged?.Invoke (this, EventArgs.Empty);
 	}
@@ -77,6 +84,11 @@ public class EnemyWaveManager : MonoBehaviour {
 	public int GetWaveNumber ()
 	{
 		return waveNumber;
+	}
+
+	public int GetTotalEnemyThisWave ()
+	{
+		return totalEnemiesThisWave;
 	}
 
 	public float GetNextWaveSpawnTimer ()

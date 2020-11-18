@@ -37,6 +37,9 @@ public class EnemyWaveUI : MonoBehaviour {
 		//Called when EnemyWaveManager.OnWaveNumberChanged event called
 		//Sets the waveNumber text in the UI
 		SetWaveNumberText ("Wave " + enemyWaveManager.GetWaveNumber ().ToString ());
+
+		//TODO: Add Text to the EnemyWaveUI to display the total number of enemies
+		//spawned with each wave
 	}
 
 	private void Update ()
