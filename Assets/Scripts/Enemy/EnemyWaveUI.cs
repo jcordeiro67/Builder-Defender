@@ -4,6 +4,12 @@ using TMPro;
 using UnityEngine;
 
 public class EnemyWaveUI : MonoBehaviour {
+	/// <summary>
+	///Handles the enemyWaveText and nextWaveSpawnTimer display in the EnemyWaveUI.
+	//Handles the visibility, position and rotation of the wave spawn indicator
+	//and the closest enemy indicator
+	//Requires EnemyWaveManager
+	/// </summary>
 
 	[SerializeField] EnemyWaveManager enemyWaveManager;
 	private Camera mainCamera;
@@ -28,6 +34,8 @@ public class EnemyWaveUI : MonoBehaviour {
 
 	private void EnemyWaveManager_OnWaveNumberChanged (object sender, System.EventArgs e)
 	{
+		//Called when EnemyWaveManager.OnWaveNumberChanged event called
+		//Sets the waveNumber text in the UI
 		SetWaveNumberText ("Wave " + enemyWaveManager.GetWaveNumber ().ToString ());
 	}
 
@@ -40,6 +48,7 @@ public class EnemyWaveUI : MonoBehaviour {
 
 	private void HandleNextWaveMessage ()
 	{
+		//Sets the nextwave message timer in the UI
 		float nextWaveSpawnTimer = enemyWaveManager.GetNextWaveSpawnTimer ();
 		if (nextWaveSpawnTimer <= 0f) {
 			SetMessageText ("");
@@ -50,11 +59,21 @@ public class EnemyWaveUI : MonoBehaviour {
 
 	private void HandleEnemyWaveSpawnIndicator ()
 	{
-		//Enemy Wave Indicator
+		//Enemy Wave Indicator: Sets the position and rotation of the nextWaveIndicator
+
+		//Get the position normalized between the spwanPosition and the mainCamera
 		Vector3 dirToNextSpawnPosition = (enemyWaveManager.GetSpawnPosition () - mainCamera.transform.position).normalized;
+
+		//Set the spawnPositionIndicator to the nextspawn position multiplied by the offset
 		enemyWaveSpawnIndicator.anchoredPosition = dirToNextSpawnPosition * 350f;
+
+		//Set the rotation of the indicator to the nextSpawn position
 		enemyWaveSpawnIndicator.eulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVector (dirToNextSpawnPosition));
+
+		//Get the distance between the nextSpawn position and main camera
 		float distanceToNextSpawnPosition = Vector3.Distance (enemyWaveManager.GetSpawnPosition (), mainCamera.transform.position);
+
+		//Set the indicator visibility acording to main camera ortho size
 		enemyWaveSpawnIndicator.gameObject.SetActive (distanceToNextSpawnPosition > mainCamera.orthographicSize * 1.5f);
 	}
 

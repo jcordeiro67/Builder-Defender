@@ -29,7 +29,12 @@ public class BuildingManager : MonoBehaviour {
 	}
 	private void Start ()
 	{
+		hqBuilding.GetComponent<HealthSystem> ().OnDie += BuildingManager_OnDie;
+	}
 
+	private void BuildingManager_OnDie (object sender, EventArgs e)
+	{
+		//GameOver
 	}
 
 	private void Update ()
@@ -43,6 +48,8 @@ public class BuildingManager : MonoBehaviour {
 						ResourceManager.Instance.SpendResources (activeBuildingType.constructionResourceCostArray);
 						//Moved to BuildingConstruction
 						//Instantiate (activeBuildingType.prefab, UtilsClass.GetMouseWorldPosition (), Quaternion.identity);
+
+						//Create Building after mouse clicked
 						BuildingConstruction.Create (UtilsClass.GetMouseWorldPosition (), activeBuildingType);
 					} else {
 						TooltipUI.Instance.Show ("Cannot afford " + activeBuildingType.GetConstructionResourceCostString (),

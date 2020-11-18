@@ -13,9 +13,9 @@ public class EnemyWaveManager : MonoBehaviour {
 		WaitingToSpawnNextWave,
 		SpawningWave,
 	}
-
-	[SerializeField] private int enemySpawnAmount;
-	[SerializeField] private float enemySpawnDelay;
+	[SerializeField] private float timeBetweenWaveSpawn;
+	[SerializeField] private int enemySpawnAmountPerWave;
+	[SerializeField] private float enemySpawnIndividualDelay;
 	[SerializeField] private int enemyIncreasePerWave;
 	[SerializeField] private Transform [] spawnPositionTransformList;
 	[SerializeField] private Transform NextWaveSpawnPositionTransform;
@@ -47,7 +47,7 @@ public class EnemyWaveManager : MonoBehaviour {
 			if (remainingEnemySpawnAmount > 0) {
 				nextEnemySpawnTimer -= Time.deltaTime;
 				if (nextEnemySpawnTimer < 0) {
-					nextEnemySpawnTimer = UnityEngine.Random.Range (0f, enemySpawnDelay);
+					nextEnemySpawnTimer = UnityEngine.Random.Range (0f, enemySpawnIndividualDelay);
 					Enemy.Create (spawnPosition + UtilsClass.GetRandomDir () * UnityEngine.Random.Range (0, 10f));
 					remainingEnemySpawnAmount--;
 
@@ -66,9 +66,9 @@ public class EnemyWaveManager : MonoBehaviour {
 	private void SpawnWave ()
 	{
 		//Time to spawn next wave
-		nextWaveSpawnTimer = 10f;
+		nextWaveSpawnTimer = timeBetweenWaveSpawn;
 		//Increase wave difficulty
-		remainingEnemySpawnAmount = enemySpawnAmount + enemyIncreasePerWave * waveNumber;
+		remainingEnemySpawnAmount = enemySpawnAmountPerWave + enemyIncreasePerWave * waveNumber;
 		state = State.SpawningWave;
 		waveNumber++;
 		OnWaveNumberChanged?.Invoke (this, EventArgs.Empty);
