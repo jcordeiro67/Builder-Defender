@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour {
 		//update healbar
 		UpdateHealthBar ();
 		UpdateHealthBarVisibility ();
-		//subscribe to OnDamage event
+		//subscribe to healthSystem OnDamage and onHealed events
 		healthSystem.OnDamage += HealthSystem_OnDamage;
 		healthSystem.OnHealed += HealthSystem_OnHealed;
 	}

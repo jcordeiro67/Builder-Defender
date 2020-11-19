@@ -494,6 +494,12 @@ PrefabInstance:
       propertyPath: healthSystem
       value: 
       objectReference: {fileID: -6994126879748630477}
+    - target: {fileID: 2438808410304012160, guid: fc7c7b16ff69c406483dbaa41e300b09,
+        type: 3}
+      propertyPath: goldResourceType
+      value: 
+      objectReference: {fileID: 11400000, guid: 8cf63760d43384f0e8cecc0a48feb382,
+        type: 2}
     - target: {fileID: 9136403657061961606, guid: fc7c7b16ff69c406483dbaa41e300b09,
         type: 3}
       propertyPath: m_Name
